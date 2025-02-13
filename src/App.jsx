@@ -7,36 +7,41 @@ import Modal from "react-bootstrap/Modal";
 function App() {
   const [users, setUsers] = useState([]);
   const [show, setShow] = useState(false);
-  const [formData, setFormData] = useState({
-    name: "",
-    age: "",
-    skill: "",
-    designation: "",
-    address: "",
-  });
-
+  const [Index, setIndex] = useState(null);
+  const [formData, setFormData] = useState({});
+  const handleShow = () => {
+    setIndex(null);
+    setFormData({});
+    setShow(true);
+  };
+  const handleEdit = (index) => {
+    setIndex(index);
+    setFormData(users[index]);
+    setShow(true);
+  };
   const handleClose = () => {
     setShow(false);
-    setFormData({ name: "", age: "", skill: "", designation: "", address: "" }); // Reset form
+    setIndex(null);
   };
-  const handleShow = () => setShow(true);
-
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
-
   const handleSubmit = () => {
-    setUsers([...users, formData]); // Add new user to list
+    if (Index !== null) {
+      const updatedUsers = [...users];
+      updatedUsers[Index] = formData;
+      setUsers(updatedUsers);
+    } else {
+      setUsers([...users, formData]);
+    }
     handleClose();
   };
-
   const deleteUser = (index) => {
     setUsers(users.filter((_, i) => i !== index));
   };
 
   return (
     <>
-      {/* Modal for Form Input */}
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
           <Modal.Title>Enter Details</Modal.Title>
@@ -104,15 +109,11 @@ function App() {
           </Button>
         </Modal.Footer>
       </Modal>
-
-      {/* Button to Show Modal */}
       <div className="container mt-3">
         <Button variant="success" onClick={handleShow}>
           Add New
         </Button>
       </div>
-
-      {/* Table to Display Users */}
       <div className="container mt-3">
         <table className="table table-bordered">
           <thead className="thead-dark">
@@ -126,21 +127,25 @@ function App() {
             </tr>
           </thead>
           <tbody>
-            {users.map((user, index) => (
-              <tr key={index}>
+          {users.length!==0?(
+            users.map((user, index) => (
+              <tr>
                 <td>{user.name}</td>
                 <td>{user.age}</td>
                 <td>{user.skill}</td>
                 <td>{user.designation}</td>
                 <td>{user.address}</td>
                 <td>
+                  <Button variant="warning" className="me-2" onClick={() => handleEdit(index)}>
+                    Edit
+                  </Button>
                   <Button variant="danger" onClick={() => deleteUser(index)}>
                     Delete
                   </Button>
                 </td>
               </tr>
-            ))}
-            {users.length === 0 && (
+            )))
+            :(
               <tr>
                 <td colSpan="6" className="text-center">
                   No data available
