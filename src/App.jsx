@@ -50,53 +50,23 @@ function App() {
           <Form>
             <Form.Group>
               <Form.Label>Name</Form.Label>
-              <Form.Control
-                type="text"
-                placeholder="Name"
-                name="name"
-                value={formData.name}
-                onChange={handleChange}
-              />
+              <Form.Control type="text" placeholder="Name" name="name" value={formData.name} onChange={handleChange} />
             </Form.Group>
             <Form.Group>
               <Form.Label>Age</Form.Label>
-              <Form.Control
-                type="text"
-                placeholder="Age"
-                name="age"
-                value={formData.age}
-                onChange={handleChange}
-              />
+              <Form.Control type="text" placeholder="Age" name="age" value={formData.age} onChange={handleChange}/>
             </Form.Group>
             <Form.Group>
               <Form.Label>Skills</Form.Label>
-              <Form.Control
-                type="text"
-                placeholder="Skills"
-                name="skill"
-                value={formData.skill}
-                onChange={handleChange}
-              />
+              <Form.Control type="text" placeholder="Skills" name="skill" value={formData.skill} onChange={handleChange}/>
             </Form.Group>
             <Form.Group>
               <Form.Label>Designation</Form.Label>
-              <Form.Control
-                type="text"
-                placeholder="Designation"
-                name="designation"
-                value={formData.designation}
-                onChange={handleChange}
-              />
+              <Form.Control type="text" placeholder="Designation" name="designation" value={formData.designation} onChange={handleChange} />
             </Form.Group>
             <Form.Group>
               <Form.Label>Address</Form.Label>
-              <Form.Control
-                type="text"
-                placeholder="Address"
-                name="address"
-                value={formData.address}
-                onChange={handleChange}
-              />
+              <Form.Control type="text" placeholder="Address" name="address" value={formData.address} onChange={handleChange}/>
             </Form.Group>
           </Form>
         </Modal.Body>
